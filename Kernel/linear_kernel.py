@@ -128,6 +128,10 @@ for h in kitchenObjects_new:
 with open('Categories_k.csv', 'wb') as f:
     writer = csv.writer(f)
     writer.writerows(categorizationNewObjects)
+    
+
+
+
 
 # print kitchenObjects[1]
 # print histogram_intersection(kitchenObjects[1],kitchenObjects[2])
