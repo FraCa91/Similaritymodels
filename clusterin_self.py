@@ -6,15 +6,15 @@ from math import *
 from random import randint
 
 # a = [3,1,1,3,3,5,7,8]
-# a = [319, 646, 876, 927, 999]
+# a = [[319,"Teller"], [935,"Teller"], [738,"Teller"], [348,"Teller"], [619,"Teller"]]
 
 
 def randomArray(size):
     result = []
     for i in range(size):
-        result.append(randint(0,1000))
+        result.append([randint(0,1000),"Teller"])
     return result
-a = randomArray(5)
+a = randomArray(134)
 
 # def greatestDist(arr):
 #     maxDist=0
@@ -61,13 +61,14 @@ a = randomArray(5)
 
 
 def generateDistanceArray(arr):
-    workArray = sorted(arr, key=lambda arr: arr)
+    workArray = sorted(arr, key=lambda arr: arr[0])
+    # print workArray
     result=[]
     for i in range(len(workArray)):
         if (i==0):
             result.append(i)
         else:
-            result.append(abs(workArray[i]-workArray[i-1]))
+            result.append(abs(workArray[i][0]-workArray[i-1][0]))
     return result
     
 # sorted(result, key=lambda result: result[0])
@@ -86,14 +87,14 @@ def countDistanceAmount(distArr):
     return result
 
 def clusterArray(arr,distArr,cluster):
-    workArray = sorted(arr, key=lambda arr: arr)
+    workArray = sorted(arr, key=lambda arr: arr[0])
     buffer = workArray
-    print "arrayw:"
-    print workArray
-    print "distance:"
-    print distArr
-    print "cluster"
-    print cluster
+    # print "arrayw:"
+    # print workArray
+    # print "distance:"
+    # print distArr
+    # print "cluster"
+    # print cluster
     if (cluster == 0):
         print "seriously?"
     elif (cluster == 1):
@@ -118,8 +119,8 @@ def clusterArrayProcedure(arr,distArr,cluster):
         else:
             breaks.append(distArr[u])
     breaks = sorted(breaks, key=lambda breaks: breaks[1])
-    print "breaks: "
-    print breaks
+    # print "breaks: "
+    # print breaks
     for t in range(cluster):
         if (t == 0):
             result.append(arr[:breaks[t][1]])
@@ -132,11 +133,17 @@ def clusterArrayProcedure(arr,distArr,cluster):
     return result
     
 
+# print a
+# print generateDistanceArray(a)
+
+
 # print splitDistanceArray(generateDistanceArray(a))
 # clusterArray(5)
 # print sorted(a, key=lambda a: a)
 distanceArray = splitDistanceArray(generateDistanceArray(a))
 # print distanceArray
 # print splitDistanceArray(generateDistanceArray(a))
-print clusterArray(a,distanceArray,5)
+printcluster = clusterArray(a,distanceArray,23)
+for i in printcluster:
+    print i
 # print countDistanceAmount(distanceArray)
